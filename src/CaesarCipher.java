@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class CaesarCipher {
     private static final String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,””:-!? ";
-    ArrayList<String> alphaBet = new ArrayList<>(Arrays.asList(alphabet));
+    ArrayList<String> alphaBet = new ArrayList<>(List.of(alphabet));
 
 
     public ArrayList<String> encrypt(String message, int key) {
@@ -31,6 +30,14 @@ public class CaesarCipher {
             }
         }
         return deCrypt;
+    }
+    public String bruteForce(String message) {
+        ArrayList<String> msg = new ArrayList<>();
+
+        return "";
+    }
+    public String statisticalAnalysisMethod (String message, String authhorMessage) {
+        return ""
     }
 }
 
