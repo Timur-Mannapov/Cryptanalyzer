@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.Collections;
 public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -12,6 +12,7 @@ public class Menu {
                     4. Расшифровать текст методом синтаксического анализа. \s
                     5. Выйти из программы.""");
             String answer = scanner.nextLine();
+
             switch (answer) {
                 case "1" -> System.out.println("Зашифровать текст в файле с помощью ключа.");
                 case "2" -> System.out.println();
@@ -19,6 +20,7 @@ public class Menu {
                 case "4" -> System.out.println();
                 case "5" -> {
                     return;
+
                 }
             }
 
