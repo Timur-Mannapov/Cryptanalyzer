@@ -15,11 +15,9 @@ public class CaesarCipher {
             if (alphabet.contains(enCrypt.get(i))) {
                 index = alphabet.indexOf(enCrypt.get(i));
                 enCrypt.set(i, alphaBet.get(index + key));
-            } else {
-                return enCrypt;
             }
         }
-        return null;
+        return enCrypt;
     }
         public String decrypt (String message,int key){
             return "";
