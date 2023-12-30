@@ -32,12 +32,13 @@ public class CaesarCipher {
         return deCrypt;
     }
     public String bruteForce(String message) {
-        ArrayList<String> msg = new ArrayList<>();
-
+        for (int i = 0; i < alphaBet.size(); i++) {
+            decrypt(message,i);
+        }
         return "";
     }
     public String statisticalAnalysisMethod (String message, String authhorMessage) {
-        return ""
+        return "";
     }
 }
 
