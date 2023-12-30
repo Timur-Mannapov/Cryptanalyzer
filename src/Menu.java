@@ -15,6 +15,7 @@ public class Menu {
 
             switch (answer) {
                 case "1" -> System.out.println("Зашифровать текст в файле с помощью ключа.");
+
                 case "2" -> System.out.println();
                 case "3" -> System.out.println();
                 case "4" -> System.out.println();

@@ -19,9 +19,19 @@ public class CaesarCipher {
         }
         return enCrypt;
     }
-        public String decrypt (String message,int key){
-            return "";
+
+    public ArrayList<String> decrypt(String message, int key) {
+        ArrayList<String> deCrypt = new ArrayList<>();
+        deCrypt.add(message);
+        for (int i = 0; i < deCrypt.size(); i++) {
+            int index = 0;
+            if (alphabet.contains(deCrypt.get(i))) {
+                index = alphabet.indexOf(deCrypt.get(i));
+                deCrypt.set(i, alphaBet.get(index - key));
+            }
         }
+        return deCrypt;
     }
+}
 
 
