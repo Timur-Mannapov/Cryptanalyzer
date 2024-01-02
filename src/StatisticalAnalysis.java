@@ -10,5 +10,12 @@ public class StatisticalAnalysis {
         int key = 1;
         String decryptText = caesarCipher.decrypt(string, key);
         String anotherText = scanner.nextLine();
+        int i = 0;
+        int i2 = 5;
+        String fiveLetters = String.valueOf(decryptText.indexOf(i,i2));
+        while (!(anotherText.contains(fiveLetters))) {
+            key += 1;
+            System.out.println(decryptText);
+        }
     }
 }
