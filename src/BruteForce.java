@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class BruteForce {
-    public static void main(String[] args) {
+    public void bruteForce() {
         Scanner scanner = new Scanner(System.in);
         CaesarCipher caesarCipher = new CaesarCipher();
         System.out.println("Введите текст, который нужно расшифровать");
