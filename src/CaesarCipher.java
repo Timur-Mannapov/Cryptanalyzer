@@ -1,44 +1,24 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class CaesarCipher {
     private static final String alphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ.,””:-!? ";
-    ArrayList<String> alphaBet = new ArrayList<>(List.of(alphabet));
 
 
-    public ArrayList<String> encrypt(String message, int key) {
-        ArrayList<String> enCrypt = new ArrayList<>();
-        enCrypt.add(message);
-        for (int i = 0; i < enCrypt.size(); i++) {
-            int index = 0;
-            if (alphabet.contains(enCrypt.get(i))) {
-                index = alphabet.indexOf(enCrypt.get(i));
-                enCrypt.set(i, alphaBet.get(index + key));
+    public String encrypt(String message, int key) {
+        StringBuilder builder = new StringBuilder();
+        for (char aChar : message.toCharArray()) {
+            int index = alphabet.indexOf(aChar);
+            if (index >= 0) {
+                int newIndex = (index + key) % alphabet.length();
+                char charAt = (newIndex < 0) ? alphabet.charAt(newIndex + alphabet.length()) : alphabet.charAt(newIndex);
+                builder.append(charAt);
             }
         }
-        return enCrypt;
+        return builder.toString();
     }
 
-    public ArrayList<String> decrypt(String message, int key) {
-        ArrayList<String> deCrypt = new ArrayList<>();
-        deCrypt.add(message);
-        for (int i = 0; i < deCrypt.size(); i++) {
-            int index = 0;
-            if (alphabet.contains(deCrypt.get(i))) {
-                index = alphabet.indexOf(deCrypt.get(i));
-                deCrypt.set(i, alphaBet.get(index - key));
-            }
-        }
-        return deCrypt;
-    }
-    public String bruteForce(String message) {
-        for (int i = 0; i < alphaBet.size(); i++) {
-            decrypt(message,i);
-        }
-        return "";
-    }
-    public String statisticalAnalysisMethod (String message, String authhorMessage) {
-        return "";
+    public String decrypt(String message, int key) {
+
+        return encrypt(message, key * (-1));
     }
 }
 
