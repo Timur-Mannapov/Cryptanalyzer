@@ -1,7 +1,8 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("""
@@ -13,8 +14,8 @@ public class Menu {
                     5. Выйти из программы.""");
             String answer = scanner.nextLine();
             switch (answer) {
-                case "1" -> System.out.println();
-                case "2" -> System.out.println();
+                case "1" -> new Encrypted().encrypted();
+                case "2" -> new Decrypted().decrypted();
                 case "3" -> System.out.println();
                 case "4" -> System.out.println();
                 case "5" -> {
