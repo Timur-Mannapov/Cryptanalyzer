@@ -38,8 +38,11 @@ public class Util {
     }
 
     public static Path buildFileName(String path, String suffix) {
-        Path src = Path.of(path).toAbsolutePath();
-        Path dest = Files.copy();
+        Path parent = Path.of(path).getParent();
+        Path fileName = Path.of(path).getFileName();
+        String src = fileName.toString();
+        String dest = src + suffix;
+        return parent.resolve(dest);
     }
 
 }
