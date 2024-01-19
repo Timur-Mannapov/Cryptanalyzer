@@ -41,7 +41,7 @@ public class Util {
         Path parent = Path.of(path).getParent();
         Path fileName = Path.of(path).getFileName();
         String src = fileName.toString();
-        String dest = src + suffix;
+        String dest = suffix + src;
         return parent.resolve(dest);
     }
 

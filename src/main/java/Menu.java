@@ -1,9 +1,7 @@
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Menu {
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("""
                     Выберете действие введя его номер:\s
@@ -12,10 +10,10 @@ public class Menu {
                     3. Подобрать ключ используя brute force.\s
                     4. Расшифровать текст методом синтаксического анализа. \s
                     5. Выйти из программы.""");
-            String answer = scanner.nextLine();
+            String answer = Util.readString();
             switch (answer) {
-                case "1" -> new Encrypted().encrypted();
-                case "2" -> new Decrypted().decrypted();
+                case "1" -> new EncryptedDecrypted().encryptedDecrypted(true);
+                case "2" -> new EncryptedDecrypted().encryptedDecrypted(false);
                 case "3" -> System.out.println();
                 case "4" -> System.out.println();
                 case "5" -> {

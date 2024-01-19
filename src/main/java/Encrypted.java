@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.Path;
 import java.util.Scanner;
 
 public class Encrypted {
@@ -6,15 +7,13 @@ public class Encrypted {
     запросить ключ и запросить куда записать результат
      */
     public void encrypted() throws IOException {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Введите адрес файла, который нужно зашифровать");
-        String src = scanner.nextLine();
+        String src =  Util.readString();
         System.out.println("Введите ключ для шифрования");
-        int key = scanner.nextInt();
-        System.out.println("Введите адрес файла, для сохранения результата");
-        String dest = scanner.nextLine();
+        int key = Util.readInt();
+        Path dest = Util.buildFileName(src,"out");
         try (BufferedReader reader = new BufferedReader(new FileReader(src));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(dest))) {
+             BufferedWriter writer = new BufferedWriter(new FileWriter(dest.toFile()))) {
             CaesarCipher caesarCipher = new CaesarCipher();
             while (reader.ready()) {
                 String string = reader.readLine();
