@@ -37,17 +37,17 @@ public class Util {
     }
 
     public static Path buildFileName(String path, String suffix) {
-        Path parent = Path.of(path).getParent();
-        Path fileName = Path.of(path).getFileName();
-        String src = fileName.toString();
-        if (src.contains(".")) {
-            String result = src.substring(0,src.indexOf("."));
-            String dest = result + suffix;
-            return parent.resolve(dest);
+        Path absolutePath = Path.of(path);
+        Path parent = absolutePath.getParent();
+        String fileName = absolutePath.getFileName().toString();
+        String newFileName;
+        if (fileName.contains(".")) {
+            int index = fileName.lastIndexOf(".");
+            newFileName = fileName.substring(0,index) + suffix + fileName.substring(index);
         } else {
-            String dest = src + suffix;
-            return parent.resolve(dest);
+            newFileName = fileName + suffix;
         }
+        return parent.resolve(newFileName);
     }
 
 }
