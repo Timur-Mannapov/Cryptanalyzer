@@ -1,30 +1,39 @@
+import lombok.SneakyThrows;
+
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class BruteForce {
-    public void bruteForce() throws IOException {
-        System.out.println("Введите адрес файла, к которому необходимо подобрать ключ");
+
+    private final CaesarCipher caesarCipher = new CaesarCipher();
+
+    @SneakyThrows
+    public void bruteForce() {
+        Util.writeMessage("Введите адрес файла, к которому необходимо подобрать ключ");
         String src = Util.readString();
-        try (BufferedReader reader = new BufferedReader(new FileReader(src))) {
-            CaesarCipher caesarCipher = new CaesarCipher();
+        Path dest = Util.buildFileName(src, "_bruteForce");
+        try (BufferedReader reader = Files.newBufferedReader(Path.of(src));
+             BufferedWriter writer = Files.newBufferedWriter(dest)) {
+            StringBuilder builder = new StringBuilder();
             while (reader.ready()) {
                 String string = reader.readLine();
-                int countMax = 0;
-                char[] symbolArray = new char[src.length()];
-
-                for (char c : string.toCharArray()) {
-                    symbolArray[c]++;
+                builder.append(string);
+            }
+            for (int i = 0; i < caesarCipher.alphabetLength(); i++) {
+                String decrypt = caesarCipher.decrypt(builder.toString(), i);
+                if (isValidateText(decrypt)) {
+                    writer.write(decrypt);
+                    Util.writeMessage("Содержимое файла расшифровано, ключ расшифровки равен " + i);
+                    break;
                 }
-                for (int i = 0; i < symbolArray.length; i++) {
-                    if(countMax < symbolArray[i]) {
-                        countMax = symbolArray[i];
-                    }
-                }
-                int result = symbolArray[countMax] - caesarCipher.ALPHABET.indexOf(symbolArray[countMax]);
-                System.out.println("Ваш ключ" + result);
             }
         }
-        }
     }
+    private boolean isValidateText(String text) {
+        return false;
+    }
+}
 
 
 
