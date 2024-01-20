@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Util {
@@ -41,7 +40,7 @@ public class Util {
         Path parent = Path.of(path).getParent();
         Path fileName = Path.of(path).getFileName();
         String src = fileName.toString();
-        String dest = suffix + src;
+        String dest = src.replaceAll("\\....$", suffix);
         return parent.resolve(dest);
     }
 
