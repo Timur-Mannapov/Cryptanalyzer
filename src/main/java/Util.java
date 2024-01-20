@@ -40,8 +40,14 @@ public class Util {
         Path parent = Path.of(path).getParent();
         Path fileName = Path.of(path).getFileName();
         String src = fileName.toString();
-        String dest = src.replaceAll("\\....$", suffix);
-        return parent.resolve(dest);
+        if (src.contains(".")) {
+            String result = src.substring(0,src.indexOf("."));
+            String dest = result + suffix;
+            return parent.resolve(dest);
+        } else {
+            String dest = src + suffix;
+            return parent.resolve(dest);
+        }
     }
 
 }
