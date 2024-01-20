@@ -1,11 +1,7 @@
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class Decrypted {
-    /* Запросить у пользователя адрес файла, который нужно дешифровать
-    запросить ключ и запросить куда записать результат
-     */
     public void decrypted() throws IOException {
         System.out.println("Введите адрес файла, который нужно дешифровать");
         String src = Util.readString();

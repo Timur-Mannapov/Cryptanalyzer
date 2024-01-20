@@ -1,11 +1,7 @@
 import java.io.*;
 import java.nio.file.Path;
-import java.util.Scanner;
 
 public class Encrypted {
-    /* Запросить у пользователя адрес файла, который нужно зашифровать
-    запросить ключ и запросить куда записать результат
-     */
     public void encrypted() throws IOException {
         System.out.println("Введите адрес файла, который нужно зашифровать");
         String src =  Util.readString();
