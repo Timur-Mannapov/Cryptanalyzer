@@ -3,9 +3,9 @@ import java.nio.file.Path;
 
 public class Encrypted {
     public void encrypted() throws IOException {
-        System.out.println("Введите адрес файла, который нужно зашифровать");
+        Util.writeMessage("Введите адрес файла, который нужно зашифровать");
         String src =  Util.readString();
-        System.out.println("Введите ключ для шифрования");
+        Util.writeMessage("Введите ключ для шифрования");
         int key = Util.readInt();
         Path dest = Util.buildFileName(src,"out");
         try (BufferedReader reader = new BufferedReader(new FileReader(src));

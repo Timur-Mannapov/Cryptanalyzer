@@ -3,9 +3,9 @@ import java.nio.file.Path;
 
 public class Decrypted {
     public void decrypted() throws IOException {
-        System.out.println("Введите адрес файла, который нужно дешифровать");
+        Util.writeMessage("Введите адрес файла, который нужно дешифровать");
         String src = Util.readString();
-        System.out.println("Введите ключ для дешифрования");
+        Util.writeMessage("Введите ключ для дешифрования");
         int key = Util.readInt();
         System.out.println("Введите адрес файла, для сохранения результата");
         Path dest = Util.buildFileName(src,"out");
