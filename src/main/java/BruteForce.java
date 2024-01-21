@@ -30,7 +30,26 @@ public class BruteForce {
             }
         }
     }
+
     private boolean isValidateText(String text) {
+        if (!text.contains("\\S{28}")) {
+            return true;
+        } else if (text.contains(". ") || text.contains(", ")) {
+            return true;
+        } else {
+            boolean textQuestions = false;
+            Util.writeMessage("Проверьте, текст расшифрован? Да/Нет \n" + text.substring(0, 50));
+            while (!textQuestions) {
+                if (Util.readString().contains("Да")) {
+                    return true;
+                } else if (Util.readString().contains("Нет")) {
+                    return true;
+                } else {
+                    Util.writeMessage("Некорректный ответ");
+                }
+            }
+
+        }
         return false;
     }
 }
