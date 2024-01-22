@@ -32,17 +32,17 @@ public class BruteForce {
     }
 
     private boolean isValidateText(String text) {
-        if (!text.contains("\\S{28}")) {
-            return true;
+        if (text.contains("\\S{28}")) {
+            return false;
         } else if (text.contains(". ") || text.contains(", ")) {
             return true;
         } else {
             boolean textQuestions = false;
             Util.writeMessage("Проверьте, текст расшифрован? Да/Нет \n" + text.substring(0, 50));
-            while (!textQuestions) {
-                if (Util.readString().contains("Да")) {
+            while (textQuestions) {
+                if (Util.readString().equalsIgnoreCase("Да")) {
                     return true;
-                } else if (Util.readString().contains("Нет")) {
+                } else if (Util.readString().equalsIgnoreCase("Нет")) {
                     return true;
                 } else {
                     Util.writeMessage("Некорректный ответ");
