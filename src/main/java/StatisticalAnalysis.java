@@ -15,6 +15,18 @@ public class StatisticalAnalysis {
              BufferedWriter writer = new BufferedWriter(new FileWriter(dest.toFile()))) {
             CaesarCipher caesarCipher = new CaesarCipher();
             while (reader.ready()) {
+                String string = reader.readLine();
+                int countMax = 0;
+                char[] symbolArray = new char[src.length()];
+
+                for (char c : string.toCharArray()) {
+                    symbolArray[c]++;
+                }
+                for (int i = 0; i < symbolArray.length; i++) {
+                    if(countMax < symbolArray[i]) {
+                        countMax = symbolArray[i];
+                    }
+                }
             }
         }
     }
