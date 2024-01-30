@@ -21,30 +21,34 @@ public class Parsing {
         try (BufferedReader reader = new BufferedReader(new FileReader(src));
              BufferedReader readerSecond = new BufferedReader(new FileReader(statisticSrc));
              BufferedWriter writer = new BufferedWriter(new FileWriter(dest.toFile()))) {
-            HashMap<Integer, Character> map = new HashMap<>();
-            HashMap<Integer, Character> secondMap = new HashMap<>();
-            int keyMap = 0;
+            HashMap<Character, Integer> map = new HashMap<>();
+            HashMap<Character, Integer> secondMap = new HashMap<>();
             while (reader.ready()) {
                 String string = reader.readLine();
+
                 for (char c : string.toCharArray()) {
-                    map.put(keyMap++, c);
+                    map.put(c, +1);
                 }
             }
             while (readerSecond.ready()) {
                 String string = readerSecond.readLine();
                 for (char c : string.toCharArray()) {
-                    secondMap.put(keyMap++, c);
+                    secondMap.put(c, +1);
                 }
             }
-            ArrayList<Integer> arrayList = new ArrayList<>(map.keySet());
-            ArrayList<Integer> secondArrayList = new ArrayList<>(map.keySet());
+
+            ArrayList<Character> arrayList = new ArrayList<>(map.keySet());
+            ArrayList<Character> secondArrayList = new ArrayList<>(map.keySet());
             Collections.sort(arrayList);
             Collections.reverse(arrayList);
             Collections.sort(secondArrayList);
             Collections.reverse(secondArrayList);
             for (int i = 0; i < arrayList.size(); i++) {
-                map.put(arrayList.get(i), secondMap.get(secondArrayList.get(i)));
-
+                if (secondMap.containsValue(secondArrayList.get(i))) {
+                    map.put(arrayList.get(i), secondMap.get(secondArrayList.get(i)));
+                } else {
+                    map.put(arrayList.get(i), 0);
+                }
             }
             for (int key : map.keySet())
                 writer.write(map.get(key));
