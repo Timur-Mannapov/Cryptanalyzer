@@ -1,11 +1,15 @@
 import lombok.SneakyThrows;
 
+import java.awt.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BruteForce {
 
+    private static final int MAX_WORD_LENGTH = 28;
     private final CaesarCipher caesarCipher = new CaesarCipher();
 
     @SneakyThrows
@@ -15,15 +19,17 @@ public class BruteForce {
         Path dest = Util.buildFileName(src, "_bruteForce");
         try (BufferedReader reader = Files.newBufferedReader(Path.of(src));
              BufferedWriter writer = Files.newBufferedWriter(dest)) {
-            StringBuilder builder = new StringBuilder();
+            List<String> list = new ArrayList<>();
             while (reader.ready()) {
                 String string = reader.readLine();
-                builder.append(string);
+                list.add(string);
             }
+
             for (int i = 0; i < caesarCipher.alphabetLength(); i++) {
-                String decrypt = caesarCipher.decrypt(builder.toString(), i);
+                String decrypt = caesarCipher.decrypt(list.toString(), i);
                 if (isValidateText(decrypt)) {
                     writer.write(decrypt);
+                    writer.newLine();
                     Util.writeMessage("Содержимое файла расшифровано, ключ расшифровки равен " + i);
                     break;
                 }
@@ -32,23 +38,25 @@ public class BruteForce {
     }
 
     private boolean isValidateText(String text) {
-        if (text.contains("\\S{28}")) {
-            return false;
-        } else if (text.contains(". ") || text.contains(", ")) {
-            return true;
-        } else {
-            boolean textQuestions = false;
-            Util.writeMessage("Проверьте, текст расшифрован? Да/Нет \n" + text.substring(0, 50));
-            while (textQuestions) {
-                if (Util.readString().equalsIgnoreCase("Да")) {
-                    return true;
-                } else if (Util.readString().equalsIgnoreCase("Нет")) {
-                    return true;
-                } else {
-                    Util.writeMessage("Некорректный ответ");
-                }
+        boolean isValidate = false;
+        for (String word : text.split(" ")) {
+            if (word.length() > MAX_WORD_LENGTH) {
+                return false;
             }
-
+        }
+        if (text.contains(". ") || text.contains(", ") || text.contains("! ") || text.contains("? ")) {
+            isValidate = true;
+        }
+        while (isValidate) {
+            Util.writeMessage("Проверьте, текст расшифрован? Да/Нет \n" + text.substring(0, 50));
+            String answer = Util.readString();
+            if (answer.equalsIgnoreCase("Да")) {
+                return true;
+            } else if (answer.equalsIgnoreCase("Нет")) {
+                isValidate = false;
+            } else {
+                Util.writeMessage("Некорректный ответ");
+            }
         }
         return false;
     }
