@@ -23,6 +23,7 @@ public class BruteForce {
             while (reader.ready()) {
                 String string = reader.readLine();
                 list.add(string);
+                list.add("\n");
             }
 
             for (int i = 0; i < caesarCipher.alphabetLength(); i++) {
