@@ -41,10 +41,10 @@ public class Parsing {
                         secondMap.put(c, 1);
                     }
                 }
-                Comparator<Map<Character,Integer>> comparator = new Comparator<Map<Character, Integer>>() {
+                Comparator<Map.Entry<Character,Integer>> comparator = new Comparator<Map.Entry<Character, Integer>>() {
                     @Override
-                    public int compare(Map<Character, Integer> o1, Map<Character, Integer> o2) {
-                        return 0;
+                    public int compare(Map.Entry<Character, Integer> o1, Map.Entry<Character, Integer> o2) {
+                        return o2.getValue() - o1.getValue();
                     }
                 };
 
